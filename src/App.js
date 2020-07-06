@@ -78,7 +78,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="header">
-          <h2>Welcome to your Todo App!</h2>
+          <h2>TODO APP</h2>
           <TodoForm 
             handleSubmit={this.handleSubmit} 
             handleChanges={this.handleChanges}
