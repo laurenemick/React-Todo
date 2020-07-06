@@ -23,7 +23,8 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      tasks: tasks
+      tasks: tasks,
+      task: ""
     };
   }
 
@@ -53,12 +54,37 @@ class App extends React.Component {
     });
   };
 
+  handleChanges = e => {
+    this.setState({
+      task: e.target.value
+    });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.addTask(this.state.task);
+    this.setState({
+      task: ""
+    });
+  };
+
+  clearCompleted = e => {
+    this.setState({
+      tasks: this.state.tasks.filter(task => task.completed === false)
+    });
+  };
+
   render() {
     return (
       <div className="App">
         <div className="header">
           <h2>Welcome to your Todo App!</h2>
-          <TodoForm addTask={this.addTask} />
+          <TodoForm 
+            handleSubmit={this.handleSubmit} 
+            handleChanges={this.handleChanges}
+            clearCompleted={this.clearCompleted}
+            task={this.state.task} 
+          />
         </div>
         <TodoList 
           toggleTask={this.toggleTask}
